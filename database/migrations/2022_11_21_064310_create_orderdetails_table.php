@@ -15,11 +15,11 @@ class CreateOrderdetailsTable extends Migration
     {
         Schema::create('orderdetails', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->unsigned();
-            $table->integer('product_id')->unsigned()->index();
-            $table->integer('quantity')->default(1);
+            $table->integer('order_id')->index()->unsigned();
+            $table->integer('product_id')->index()->unsigned();
+            $table->string("SKU");
+            $table->integer('quantity')->default(0);
             $table->float('price')->default(0);
-            $table->float('sub_total')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
