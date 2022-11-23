@@ -14,8 +14,52 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-Route::get('/login', function () {
+Route::get('register',function(){
+    return view('register');
+});
+Route::get('login', function () {
     return view('login');
+});
+Route::get('category', function(){
+    return view('category');
+})->name('category');
+
+Route::get('category/{id}',function($id){
+    return view('single-product',['id'=>$id]);
+})->name('single-product');
+
+Route::middleware(['auth'])->prefix("user")->name("user.")->group(function () {
+    Route::get('profile',function(){
+        return view('profile');
+    });
+    Route::get('cart',function(){
+        return view('cart');
+    });
+    Route::get('checkout',function(){
+        return view('checkout');
+    });
+    Route::get('comfirm',function(){
+        return view('confirmation');
+    });
+});
+
+
+
+
+Route::middleware(['dashboard'])->prefix("dashboard")->name("dashboard.")->group(function () {
+    Route::get('/',function(){
+        return view('profile');
+    });
+    Route::get('products',function(){
+        return view('cart');
+    });
+
+    Route::get('checkout',function(){
+        return view('checkout');
+    });
+    Route::get('comfirm',function(){
+        return view('confirmation');
+    });
 });
