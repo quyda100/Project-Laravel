@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $username = $request->email; // bien du lieu tu ajax
         $password = $request->pass;
-        $Account = DB::table('users')->where('Email',$username)->where('PassWord',$password)->get();
+        $Account = DB::table('users')->where('Email',$username)->where('Password',$password)->get();
         if (!empty($Account)) {
             return $Account;
         }

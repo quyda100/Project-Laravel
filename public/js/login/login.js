@@ -40,6 +40,7 @@ $(document).ready(function(){
                     }
                     else{
                         $("#error").html('email va password khong dung');
+                        //console.log(email, pass);
                         return;
                     }
                     
