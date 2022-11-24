@@ -42,11 +42,10 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="login_form_inner">
+            <div class="login_form_inner" >
               <h3>Log in to enter</h3>
               <form
                 class="row login_form"
-                method="post"
                 id="contactForm"
                 novalidate="novalidate"
               >
@@ -55,7 +54,7 @@
                     type="text"
                     class="form-control"
                     id="name"
-                    name="name"
+                    name="email"
                     placeholder="Username"
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Username'"
@@ -72,6 +71,7 @@
                     onblur="this.placeholder = 'Password'"
                   />
                 </div>
+                <span id="error"></span>
                 <div class="col-md-12 form-group">
                   <div class="creat_account">
                     <input type="checkbox" id="f-option2" name="selector" />
@@ -79,9 +79,9 @@
                   </div>
                 </div>
                 <div class="col-md-12 form-group">
-                  <button type="submit" value="submit" class="primary-btn">
+                  <a  id="submit" class="primary-btn">
                     Log In
-                  </button>
+                  </a>
                   <a href="#">Forgot Password?</a>
                 </div>
               </form>
@@ -89,5 +89,9 @@
           </div>
         </div>
       </div>
+      
     </section>
     <!--================End Login Box Area =================-->
+    @endsection
+
+    

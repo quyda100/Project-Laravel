@@ -13,13 +13,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login()
+    public function login(Request $request)
     {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $account = DB::table('users')->where('name', $username)->where('password', $password)->get();
-        if (!empty($account)) {
-            return 1;
+        $username = $request->email; // bien du lieu tu ajax
+        $password = $request->pass;
+        $Account = DB::table('users')->where('Email',$username)->where('PassWord',$password)->get();
+        if (!empty($Account)) {
+            return $Account;
         }
         return -1;
     }
