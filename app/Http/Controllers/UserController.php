@@ -15,11 +15,12 @@ class UserController extends Controller
      */
     public function login(Request $request)
     {
+        
         $username = $request->email; // bien du lieu tu ajax
         $password = $request->pass;
-        $Account = DB::table('users')->where('Email',$username)->where('Password',$password)->get();
+        $Account = DB::table('users')->where('Email', $username)->where('Password', $password)->get();
         if (!empty($Account)) {
-            return $Account;
+            auth();
         }
         return -1;
     }

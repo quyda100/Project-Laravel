@@ -15,6 +15,8 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('index');
+})->name('index');
+Route::get('register', function () {
 });
 Route::get('/register',function(){
     return view('register');
@@ -26,44 +28,44 @@ Route::get('/login', function () {
 })->name('login');
 
 
-Route::get('category', function(){
+Route::get('category', function () {
     return view('category');
 })->name('category');
 
-Route::get('category/{id}',function($id){
-    return view('single-product',['id'=>$id]);
+Route::get('category/{id}', function ($id) {
+    return view('single-product', ['id' => $id]);
 })->name('single-product');
 
-Route::middleware(['auth'])->prefix("user")->name("user.")->group(function () {
-    Route::get('profile',function(){
+
+Route::middleware(['auth'])->prefix("user")->name('user.')->group(function () {
+    Route::get('profile', function () {
         return view('profile');
-    });
-    Route::get('cart',function(){
+    })->name('profile');
+    Route::get('cart', function () {
         return view('cart');
-    });
-    Route::get('checkout',function(){
+    })->name('cart');
+    Route::get('checkout', function () {
         return view('checkout');
-    });
-    Route::get('comfirm',function(){
+    })->name('checkout');
+    Route::get('comfirm', function () {
         return view('confirmation');
-    });
+    })->name('confirmation');
 });
 
 
 
-
 Route::middleware(['dashboard'])->prefix("dashboard")->name("dashboard.")->group(function () {
-    Route::get('/',function(){
+    Route::get('/', function () {
         return view('profile');
     });
-    Route::get('products',function(){
+    Route::get('products', function () {
         return view('cart');
     });
 
-    Route::get('checkout',function(){
+    Route::get('checkout', function () {
         return view('checkout');
     });
-    Route::get('comfirm',function(){
+    Route::get('comfirm', function () {
         return view('confirmation');
     });
 });
