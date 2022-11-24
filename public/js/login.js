@@ -2,14 +2,12 @@
 
 // test hai file php da ket noi duoc voi file js chuya ?
 // do sp vao trang 
-$(document).ready(function(){
-
-
-    $("#submit").click(function(){
+$(document).ready(function () {
+    $("#submit").click(function () {
         var email = $("#name").val();
         // dng focus vao id la email de lay gia tri va gan gia tri cua value cho bien co ten la email
-        var pass =$("#password").val();
-        if(email =="" || pass=="" ){
+        var pass = $("#password").val();
+        if (email == "" || pass == "") {
             //(1) alert 
             //alert('email va password k dc bo trong');
             //(2) console.log
@@ -18,33 +16,47 @@ $(document).ready(function(){
             $("#error").html('email va password k dc bo trong');
         }
         // buoc 4
-        else{
+        else {
             $.ajax({
                 // type pthuc goi
                 type: 'POST',
-                url:"api/loginApi",
-                data:{
+                url: "api/loginApi",
+                data: {
                     // email: -> la bien gui du lieu email la du lieu truyen vao bien
-                    email:email,
-                    pass:pass
-    
+                    email: email,
+                    pass: pass
+
                 },
-                success:function(data){
+                success: function (data) {
                     // data o function vo danh != data{} data o duoi la data nhan khi controller da retuenve value; data tren la truyen value di
                     //console.log(data);
                     // success : du lieu tra ve khi hoan thanh -> va nhan du lieu qua data
-                    if(!data==-1){
-                        $.session.set('id','1');
+                    if (data != -1) {
+                        $.session.set('id', '1');
                         console.log($.session.get('id'));
-                        window.location.href = "/";//chuyen huong trang "route"   
+                        cuteToast({
+                            title: "Thông báo",
+                            type: "success",
+                            message: "Đăng nhập thành công",
+                            timer: 3000,
+                        })
+                        window.setTimeout(function () {
+                            window.location.href = "/";//chuyen huong trang "route" 
+                        }, 1000);
+
                     }
-                    else{
-                        $("#error").html('email va password khong dung');
+                    else {
+                        cuteToast({
+                            title: "Thông báo",
+                            type: "error",
+                            message: "Sai tài khoản hoặc mật khẩu",
+                            timer: 3000,
+                        });
                         return;
                     }
-                    
+
                 }
-                
+
             })
         }
     })

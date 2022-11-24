@@ -27,4 +27,4 @@ Route::resource('carts', ProductsController::class);
 Route::resource('oderdetails', ProductsController::class);
 Route::resource('users', ProductsController::class);
 
-Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
+Route::any('/loginApi', [UserController::class, 'login'])->name('loginApi');
