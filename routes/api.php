@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::resource('categories', ProductsController::class);
 Route::resource('carts', ProductsController::class);
 Route::resource('oderdetails', ProductsController::class);
 Route::resource('users', ProductsController::class);
+
+Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');

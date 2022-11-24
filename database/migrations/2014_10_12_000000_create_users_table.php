@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('FullName');
             $table->string("Address");
             $table->string("Phone");
+            $table->integer('isAdmin')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
