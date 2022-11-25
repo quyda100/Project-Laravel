@@ -148,7 +148,7 @@ const cuteToast = ({ type, title, message, timer = 5000,  vibrate = [], playSoun
       <div>
         <div class="toast-frame">
           <div class="toast-body">
-            <img class="toast-body-img" src="${src}/img/${type}.svg" />'
+            <img class="toast-body-img" src="${src}/img/${type}.svg" />
             <div class="toast-body-content">
               <span class="toast-title">${title}</span>
               <span class="toast-message">${message}</span>
