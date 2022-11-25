@@ -28,20 +28,13 @@ class UserController extends Controller
         $username = $request->email; // bien du lieu tu ajax
         $password = $request->pass;
         $Account = DB::table('users')->where('Email', $username)->where('Password', $password)->get();
-        if (!empty($Account)) {
-            auth();
+        if ($Account->count()) {
+            return 1;
         }
         else{
             return -1;
         }
-        
     }
-
-
-    public function register(Request $request){
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *
