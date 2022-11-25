@@ -28,10 +28,18 @@ class UserController extends Controller
         $username = $request->email; // bien du lieu tu ajax
         $password = $request->pass;
         $Account = DB::table('users')->where('Email', $username)->where('Password', $password)->get();
-        if ($Account->count()>0) {
-            return 1;
+        if (!empty($Account)) {
+            auth();
         }
-        return -1;
+        else{
+            return -1;
+        }
+        
+    }
+
+
+    public function register(Request $request){
+
     }
 
     /**
@@ -52,7 +60,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

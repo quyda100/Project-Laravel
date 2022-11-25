@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 Route::get('register', function () {
+});
+Route::get('/register',function(){
     return view('register');
 });
 
