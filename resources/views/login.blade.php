@@ -94,4 +94,6 @@
     </section>
     <!--================End Login Box Area =================-->
     @endsection
-    
+    @section('script')
+    <script src="{{asset('js/login.js')}}"></script>
+    @endsection
