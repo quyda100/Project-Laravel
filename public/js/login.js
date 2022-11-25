@@ -13,7 +13,7 @@ $(document).ready(function () {
             //(2) console.log
             //console.log('email va password k dc bo trong');
             //(3) $("#error") -> focus vao the co id la error
-            $("#error").html('email va password k dc bo trong');
+            $("#error").html('email và password không được bỏ trống').css("color","red");
         }
         // buoc 4
         else {
@@ -31,6 +31,11 @@ $(document).ready(function () {
                     // data o function vo danh != data{} data o duoi la data nhan khi controller da retuenve value; data tren la truyen value di
                     //console.log(data);
                     // success : du lieu tra ve khi hoan thanh -> va nhan du lieu qua data
+                    $('.error').html('');
+                    if(data.error!== undefined){
+                        $('.error').html(data.error);
+                        return
+                    };
                     if (data != -1) {
                         $.session.set('id', '1');
                         console.log($.session.get('id'));
@@ -54,7 +59,6 @@ $(document).ready(function () {
                         });
                         return;
                     }
-
                 }
 
             })

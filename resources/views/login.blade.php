@@ -59,6 +59,7 @@
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Username'"
                   />
+                  <span class="error" style="text-align: left;color:red;display:block;padding-top:10px"></span>
                 </div>
                 <div class="col-md-12 form-group">
                   <input
@@ -93,5 +94,4 @@
     </section>
     <!--================End Login Box Area =================-->
     @endsection
-
     
