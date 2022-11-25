@@ -20,9 +20,17 @@ class UserController extends Controller
         $password = $request->pass;
         $Account = DB::table('users')->where('Email', $username)->where('Password', $password)->get();
         if (!empty($Account)) {
-            auth();
+            return 1;
         }
-        return -1;
+        else{
+            return -1;
+        }
+        
+    }
+
+
+    public function register(Request $request){
+
     }
 
     /**
@@ -43,7 +51,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
