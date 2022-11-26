@@ -69,12 +69,10 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
+						<ul id="user" class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href={{route('user.cart')}} class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
-								<a href={{route('login')}}><span class="lnr lnr-user"></span></button>
-									
-											
+								<a id="login" href={{route('login')}}><span class="lnr lnr-user"></span></button>
 							</li>
 						</ul>
 							
@@ -103,7 +101,7 @@
 	<!-- End Header Area -->
     @section('banner')
     @show
-    @yield('content');
+    @yield('content')
 
 	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
@@ -184,7 +182,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!-- End footer Area -->
-
+	@if(session()->has('isLogin'))
+	<input type="hidden" id="session" value="{{session()->get('isLogin')}}">
+	@endif
+	
     
 	<script src="{{asset('js/vendor/jquery-2.2.4.min.js')}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
@@ -204,6 +205,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{asset('js/cute-alert.js')}}"></script>
 	<script src="{{asset('js/jquery-2.0.0.min.js')}}"></script>
 	<script src="{{asset('js/jquery-sessition.js')}}"></script>
+	<script src="{{asset('js/accounts/logout.js')}}"></script>
 	@yield('script');
 </body>
 

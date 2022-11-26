@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     /**
@@ -31,13 +31,13 @@ class UserController extends Controller
         $Account = DB::table('users')->where('Email', $username)->first();
         if (!empty($Account)) {
              $password =Hash::check($request->password,$Account->Password);
-             
-            return $password;
-           
+             if($password==1){
+                session(['isLogin' => $Account->isAdmin]);
+                    if(session()->has('isLogin'))
+                        return 1;
+             };
         }
-         else
-         {   return -1;
-        }
+        return -1;
     }
     /**
      * Show the form for creating a new resource.
