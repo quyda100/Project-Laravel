@@ -7,16 +7,6 @@ $(document).ready(function () {
         var email = $("#name").val();
         // dng focus vao id la email de lay gia tri va gan gia tri cua value cho bien co ten la email
         var pass = $("#password").val();
-        if (email == "" || pass == "") {
-            //(1) alert 
-            //alert('email va password k dc bo trong');
-            //(2) console.log
-            //console.log('email va password k dc bo trong');
-            //(3) $("#error") -> focus vao the co id la error
-            $("#error").html('email và password không được bỏ trống').css("color","red");
-        }
-        // buoc 4
-        else {
             $.ajax({
                 // type pthuc goi
                 type: 'POST',
@@ -24,19 +14,15 @@ $(document).ready(function () {
                 data: {
                     // email: -> la bien gui du lieu email la du lieu truyen vao bien
                     email: email,
-                    pass: pass
+                    password: pass
 
                 },
                 success: function (data) {
+                    $('.error-msg').html('');
                     // data o function vo danh != data{} data o duoi la data nhan khi controller da retuenve value; data tren la truyen value di
                     //console.log(data);
                     // success : du lieu tra ve khi hoan thanh -> va nhan du lieu qua data
-                    $('.error').html('');
-                    if(data.error!== undefined){
-                        $('.error').html(data.error);
-                        return
-                    };
-                    if (data != -1) {
+                    if (data == 1) {
                         $.session.set('id', '1');
                         console.log($.session.get('id'));
                         cuteToast({
@@ -59,10 +45,17 @@ $(document).ready(function () {
                         });
                         return;
                     }
+                },
+                error: function(data){
+                    $('.error-msg').html('');
+                    if(data.responseJSON.errors){
+                    $('.error-msg').css('display','block');
+                    $('.error-msg').css('text-align','left');
+                     $('#errorEmail').text(data.responseJSON.errors.email);
+                     $('#errorPassword').text(data.responseJSON.errors.password);
+                    }
                 }
-
             })
-        }
     })
 })
 

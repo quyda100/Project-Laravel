@@ -20,7 +20,7 @@ Route::get('register', function () {
 });
 Route::get('/register',function(){
     return view('register');
-});
+})->name('register');
 
 
 Route::get('/login', function () {

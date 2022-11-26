@@ -59,6 +59,7 @@
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Username'"
                   />
+                  <span class="text-danger error-msg" id="errorEmail"></span>
                 </div>
 
                 <div class="col-md-12 form-group">
@@ -71,6 +72,7 @@
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Password'"
                   />
+                  <span class="text-danger error-msg" id="errorPassword"></span>
                 </div>
 
                 <div class="col-md-12 form-group">
@@ -83,6 +85,7 @@
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = 'FullName'"
                     />
+                    <span class="text-danger error-msg" id="errorFullName"></span>
                 </div>
 
                 <div class="col-md-12 form-group">
@@ -95,6 +98,7 @@
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = 'Address'"
                     />
+                    <span class="text-danger error-msg" id="errorAddress"></span>
                 </div>
 
 
@@ -108,6 +112,7 @@
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = 'Phone'"
                     />
+                    <span class="text-danger error-msg" id="errorPhone"></span>
                 </div>
 
 
@@ -133,6 +138,9 @@
       
     </section>
     <!--================End Login Box Area =================-->
+    @endsection
+    @section('script')
+        <script src="{{asset('js/accounts/register.js')}}"></script>
     @endsection
 
     

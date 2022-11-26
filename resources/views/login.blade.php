@@ -9,7 +9,7 @@
           <div class="col-first">
             <h1>Login/Register</h1>
             <nav class="d-flex align-items-center">
-              <a href="index.html"
+              <a href="{{route('index')}}"
                 >Home<span class="lnr lnr-arrow-right"></span
               ></a>
               <a href="category.html">Login/Register</a>
@@ -35,7 +35,7 @@
                   There are advances being made in science and technology
                   everyday, and a good example of this is the
                 </p>
-                <a class="primary-btn" href="registration.html"
+                <a class="primary-btn" href="{{route('register')}}"
                   >Create an Account</a
                 >
               </div>
@@ -59,7 +59,7 @@
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Username'"
                   />
-                  <span class="error" style="text-align: left;color:red;display:block;padding-top:10px"></span>
+                  <span class="text-danger error-msg" id="errorEmail"></span>
                 </div>
                 <div class="col-md-12 form-group">
                   <input
@@ -71,6 +71,7 @@
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Password'"
                   />
+                  <span class="text-danger error-msg" id="errorPassword"></span>
                 </div>
                 <span id="error"></span>
                 <div class="col-md-12 form-group">
@@ -95,5 +96,5 @@
     <!--================End Login Box Area =================-->
     @endsection
     @section('script')
-    <script src="{{asset('js/login.js')}}"></script>
+    <script src="{{asset('js/accounts/login.js')}}"></script>
     @endsection
