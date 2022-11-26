@@ -73,8 +73,28 @@
 							<li class="nav-item"><a href={{route('user.cart')}} class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
 								<a href={{route('login')}}><span class="lnr lnr-user"></span></button>
+									
+											
 							</li>
 						</ul>
+							
+						
+						
+							<!-- drop down login and logout  -->
+						<ul class="nav navbar-nav navbar-right">
+							<div class="dropdown" >
+								<button class="lnr lnr-user" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								  <button class="dropdown-item" type="button">Action</button>
+								  <button class="dropdown-item" type="button">Another action</button>
+								  <button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+						</ul>
+						
+						
 					</div>
 				</div>
 			</nav>

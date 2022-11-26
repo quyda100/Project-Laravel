@@ -31,7 +31,9 @@ class UserController extends Controller
         $Account = DB::table('users')->where('Email', $username)->first();
         if (!empty($Account)) {
              $password =Hash::check($request->password,$Account->Password);
-             return $password;
+             
+            return $password;
+           
         }
          else
          {   return -1;
