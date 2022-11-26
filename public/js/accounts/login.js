@@ -23,8 +23,9 @@ $(document).ready(function () {
                     //console.log(data);
                     // success : du lieu tra ve khi hoan thanh -> va nhan du lieu qua data
                     if (data == 1) {
-                        $.session.set('id', '1');
-                        console.log($.session.get('id'));
+                        //$.session.set('isAdmin', data);
+                        //console.log($.session());
+                        console.log(data);
                         cuteToast({
                             title: "Thông báo",
                             type: "success",
@@ -57,8 +58,7 @@ $(document).ready(function () {
                 }
             })
     })
-})
-
+});
 // moi funtion vo danh se co cac su kien click,...
 // $(#) huong den the toi the co gan id ="submit"
 // click la su kien click vao the do funtion trong click la su kien xay ra sau khi click
