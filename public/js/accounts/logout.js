@@ -1,7 +1,11 @@
 $(document).ready(function () {
     var session = $('#session').val();
     if(session!== undefined){
-       $('#user').append('<li class="nav-item"><a id="logout"><span class="ti-arrow-right"></span></button></li>');
+       $('#user').append(
+       
+        '<li class="nav-item"><a id="logout"><span class="ti-arrow-right"></span></button></li>'
+        );
+       
         $('#logout').click(function(){
             $.ajax({
                 type: "GET",
