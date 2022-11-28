@@ -32,7 +32,7 @@ class UserController extends Controller
         if (!empty($Account)) {
              $password =Hash::check($request->password,$Account->Password);
              if($password==1){
-                session(['isLogin' => $Account->isAdmin]);
+                session(['isLogin' => $Account->id]);
                     if(session()->has('isLogin'))
                         return 1;
              };
