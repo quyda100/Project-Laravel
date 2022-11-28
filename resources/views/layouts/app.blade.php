@@ -69,20 +69,13 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						</ul>
-						<ul  class="nav navbar-nav navbar-right">
+						<ul class="nav navbar-nav navbar-right" id="user">
 							<li class="nav-item"><a href={{route('user.cart')}} class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
 								<a id="login" href={{route('login')}}><span class="lnr lnr-user"></span></button>
 							</li>
 						</ul>
 						
-						<div class="dropdown">
-							<a data-toggle="dropdown" href="">Dropdown<span class="caret"></span></a>
-							<ul id="user" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-							  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Info</a></li>
-							  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Setting</a></li>
-							</ul>
-						  </div>
 					</div>
 				</div>
 			</nav>

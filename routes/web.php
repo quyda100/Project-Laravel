@@ -34,9 +34,7 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/logout',function(){
-    session()->flush();
-});
+
 
 Route::get('category', function () {
     return view('category');
@@ -60,6 +58,10 @@ Route::middleware(['checkLogin'])->prefix("user")->name("user.")->group(function
     Route::get('comfirm', function () {
         return view('confirmation');
     })->name('confirmation');
+    Route::get('/logout',function(){
+        session()->flush();
+        return redirect()->route('index');
+    })->name('logout');
 });
 
 
