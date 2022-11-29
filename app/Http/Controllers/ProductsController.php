@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class ProductsController extends Controller
 {
@@ -13,7 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+         $products = DB::table('products')->get();
+         return response()->json($products);
     }
 
     /**
@@ -43,9 +46,13 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($SKU)
     {
-        //
+         $Product = DB::table('products')->where('SKU','=',$SKU)->get();
+        if (!empty($Product)) {
+            return response()->json($Product);
+        }
+        return -1;
     }
 
     /**
