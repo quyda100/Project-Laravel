@@ -15,8 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-         $produts = DB::table('products')->get();
-         return response()->json($produts);
+         $products = DB::table('products')->get();
+         return response()->json($products);
     }
 
     /**
@@ -46,9 +46,13 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($SKU)
     {
-        //
+         $Product = DB::table('products')->where('SKU','=',$SKU)->get();
+        if (!empty($Product)) {
+            return response()->json($Product);
+        }
+        return -1;
     }
 
     /**
