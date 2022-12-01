@@ -15,10 +15,19 @@ class ProductsController extends Controller
      */
     public function index()
     {
-         $products = DB::table('products')->get();
-         return response()->json($products);
+            $products = DB::table('products')->get();
+         $categories = DB::table('categories')->get();
+         return response()->json(['products' =>$products,'categories' => $categories]);
     }
-
+    public function getProducts(){
+        $id = $_GET['id'];
+        $page = $_GET['page'];
+        if($id!=0)
+        $products = DB::table('products')->where('category_id',$id)->skip(9*($page-1))->take(9)->get();
+        else $products = DB::table('products')->skip(9*($page-1))->take(9)->get();
+        $categories = DB::table('categories')->get();
+        return response()->json(['products' =>$products,'categories' => $categories]);
+    }
     /**
      * Show the form for creating a new resource.
      *

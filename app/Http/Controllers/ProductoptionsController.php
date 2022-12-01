@@ -46,7 +46,6 @@ class ProductoptionsController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

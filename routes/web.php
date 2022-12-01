@@ -35,16 +35,14 @@ Route::get('/login', function () {
 })->name('login');
 
 
-
-Route::get('category', function () {
-    return view('category');
-})->name('category');
-
-Route::get('category/{id}', function ($id) {
-    return view('single-product', ['id' => $id]);
-})->name('single-product');
-
-
+Route::prefix('products')->group(function () {
+    Route::get('/', function () {
+        return view('category');
+    })->name('category');   
+    Route::get('/{id}', function ($id) {
+        return view('single-product', ['id' => $id]);
+    })->name('single-product'); 
+});
 Route::middleware(['checkLogin'])->prefix("user")->name("user.")->group(function () {
     Route::get('profile', function () {
         return view('profile');
