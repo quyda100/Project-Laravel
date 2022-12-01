@@ -189,7 +189,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{asset('js/jquery-2.0.0.min.js')}}"></script>
 	<script src="{{asset('js/jquery-sessition.js')}}"></script>
 	<script src="{{asset('js/accounts/logout.js')}}"></script>
-	@yield('script');
+	@yield('script')
 </body>
 
 </html>
