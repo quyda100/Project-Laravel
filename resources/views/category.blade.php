@@ -75,24 +75,27 @@
 			<!-- Start Filter Bar -->
 			<div class="filter-bar d-flex flex-wrap align-items-center">
 				<div class="sorting">
-					<select>
-						<option value="1">Default sorting</option>
-						<option value="1">Default sorting</option>
-						<option value="1">Default sorting</option>
+					<select name="sort" id="sort">
+						<option value="0">Giảm dần</option>
+						<option value="1">Tăng dần</option>
 					</select>
 				</div>
 				<div class="sorting mr-auto">
-					<select>
-						<option value="1">Show 12</option>
-						<option value="1">Show 12</option>
-						<option value="1">Show 12</option>
-					</select>
+				</div>
+				<div class="pagination">
+					{{-- <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a> --}}
+					{{-- <a data-id="1" class="active">1</a>
+					<a data-id="2">2</a>
+					<a data-id="3">3</a>
+					<a class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+					<a data-id="4">6</a> --}}
+					{{-- <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> --}}
 				</div>
 			</div>
 			<!-- End Filter Bar -->
 			<!-- Start Best Seller -->
 			<section class="lattest-product-area pb-40 category-list">
-				<div class="row productList">
+				<div class="row productList"style="justify-content: center;">
 					
 				</div>
 			</section>
@@ -100,20 +103,15 @@
 			<!-- Start Filter Bar -->
 			<div class="filter-bar d-flex flex-wrap align-items-center">
 				<div class="sorting mr-auto">
-					<select>
-						<option value="1">Show 12</option>
-						<option value="1">Show 12</option>
-						<option value="1">Show 12</option>
-					</select>
 				</div>
 				<div class="pagination">
-					<a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-					<a data-id="1" class="active">1</a>
+					{{-- <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a> --}}
+					{{-- <a data-id="1" class="active">1</a>
 					<a data-id="2">2</a>
 					<a data-id="3">3</a>
 					<a class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-					<a data-id="4">6</a>
-					<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					<a data-id="4">6</a> --}}
+					{{-- <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> --}}
 				</div>
 			</div>
 			<!-- End Filter Bar -->
