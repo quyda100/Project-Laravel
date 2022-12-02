@@ -85,6 +85,7 @@ $(document).ready(function () {
                      }
                 }
                 else{
+                    $('.productList').css('justify-content','center');
                     $('.productList').html('<h4>Không Tìm Thấy Sản Phẩm</h4>');
                 }
                 
