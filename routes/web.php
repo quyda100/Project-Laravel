@@ -42,6 +42,8 @@ Route::prefix('products')->group(function () {
     Route::get('/{id}', function ($id) {
         return view('single-product', ['id' => $id]);
     })->name('single-product'); 
+
+     
 });
 Route::middleware(['checkLogin'])->prefix("user")->name("user.")->group(function () {
     Route::get('profile', function () {

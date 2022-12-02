@@ -27,6 +27,7 @@ Route::resource('carts', ProductsController::class);
 Route::resource('oderdetails', ProductsController::class);
 Route::resource('users', ProductsController::class);
 Route::get('product',[ProductsController::class, 'getProducts']);
+Route::get('sort',[ProductsController::class, 'sortDesc']);
 Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
 
 Route::post('/registerApi',[UserController::class, 'store'])->name('registerApi');

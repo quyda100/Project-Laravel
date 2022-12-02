@@ -1,5 +1,6 @@
 $(document).ready(function () {
     function getCategory(){
+        $("#sort").val(0);
         $.ajax({
             type: "GET",
             url: "api/products",
@@ -20,17 +21,16 @@ $(document).ready(function () {
                         +'</li>'
                         );
                     });
-                   
                 }
             }
         });
     }
-    function getProducts(id=0,page = 1){
+    function getProducts(id=0,page = 1,order=0){
         $('.productList').html('');
         $.ajax({
             type: "GET",
             url: "api/product",
-            data: {id : id, page:page},
+            data: {id : id, page:page, order:order},
             dataType: "Json",
             success: function (response) {
                 if(response.products.length>0){
@@ -68,23 +68,49 @@ $(document).ready(function () {
                                     +'</div></div>'
                         );
                     });
+                    var count = 1;
+                    console.log(response.count);
+                    $(".pagination").html('');
+                    for(var i =0 ; i<response.count/9;i++){ 
+                        if(i==page-1)
+                        $(".pagination").append(
+                            '<a data-id="'+count+'" class="page active">'+count+'</a>'
+                        );
+                        else
+                        $(".pagination").append(
+                            '<a data-id="'+count+'" class="page">'+count+'</a>'
+                        );
+                        
+                        count++;
+                     }
+                }
+                else{
+                    $('.productList').html('<h4>Không Tìm Thấy Sản Phẩm</h4>');
                 }
                 
             }
         });
     };
-    $(document).on('click','.pagination a',function(){
+    $(document).on('click','.page',function(){
             var page = $(this).data('id');
+            var sort =$("#sort").val();
             $('.pagination a').removeClass('active');
-            $(this).addClass('active');
-            console.log(page);
-            getProducts(0,page);
+            getProducts(0,page,sort);
     });
     $(document).on('click','.category',function(){
         var id = $(this).data('category');
         getProducts(id);
     });
+
+    $("#sort").on('change', function(){
+        var val= $(this).val();
+        var page = $('.page').data('id');
+        $("#sort").val(val);
+        $('.pagination').html('');
+        getProducts(0,page,val);
+
+    })
     getProducts();
     getCategory();
-   
-})
+    $("#sort").val(0); 
+});

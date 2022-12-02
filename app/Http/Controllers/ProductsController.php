@@ -22,12 +22,45 @@ class ProductsController extends Controller
     public function getProducts(){
         $id = $_GET['id'];
         $page = $_GET['page'];
-        if($id!=0)
-        $products = DB::table('products')->where('category_id',$id)->skip(9*($page-1))->take(9)->get();
-        else $products = DB::table('products')->skip(9*($page-1))->take(9)->get();
+        $order = $_GET['order'];
+        $count = 0;
+        if($id!=0){
+        $products = DB::table('products')->where('category_id',$id)->skip(9*($page-1))->take(9);
+        $count = DB::table('products')->where('category_id',$id)->count();
+        }
+        else {
+            $products = DB::table('products')->skip(9*($page-1))->take(9);
+            $count = DB::table('products')->count();
+        }
+
+        if($order == 0){
+            $products = $products->orderBy('Price','desc')->get();
+        }
+        else{
+            $products = $products->orderBy('Price','asc')->get();
+        }
+
         $categories = DB::table('categories')->get();
-        return response()->json(['products' =>$products,'categories' => $categories]);
+        return response()->json(['products' =>$products,'categories' => $categories,'count'=> $count]);
     }
+
+   
+    public function sortDesc(){
+        $sort= $_GET['sort'];
+        $page = 0;
+        $productPrice;
+        if($sort=='0'){
+            $productPrice = DB::table('products')->skip(9*($page-1))->take(9)->orderBy('Price','desc')->get();
+        }
+        else if($sort=='1'){
+            $productPrice = DB::table('products')
+                    ->skip(9*($page-1))->take(9)
+                    ->orderBy('Price', 'asc')
+                    ->get();
+        }
+        return response()->json(['products' => $productPrice]);
+    
+   }
     /**
      * Show the form for creating a new resource.
      *
