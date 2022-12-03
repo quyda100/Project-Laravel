@@ -95,7 +95,7 @@
 			<!-- End Filter Bar -->
 			<!-- Start Best Seller -->
 			<section class="lattest-product-area pb-40 category-list">
-				<div class="row productList"style="justify-content: center;">
+				<div class="row productList">
 					
 				</div>
 			</section>
