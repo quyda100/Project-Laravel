@@ -86,6 +86,8 @@ class UserController extends Controller
             return $check;
     }
 
+    
+
     /**
      * Display the specified resource.
      *
