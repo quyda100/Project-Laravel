@@ -31,6 +31,7 @@
 	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
 	<link rel="stylesheet" href="{{asset('css/main.css')}}">
 	<link rel="stylesheet" href="{{asset('css/cute-alert.css')}}">
+	
 </head>
 
 <body>
@@ -52,7 +53,7 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href={{route('index')}}>Home</a></li>
 							<li class="nav-item"><a class="nav-link" href={{route('category')}}>Category</a></li>
-							<li class="nav-item submenu dropdown">
+							<li class="nav-item submenu dropdown"> 
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
 								<ul class="dropdown-menu" style="display: none;">
 									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
@@ -180,6 +181,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{asset('js/countdown.js')}}"></script>
 	<script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
 	<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+
 	<!--gmaps Js-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="{{asset('js/gmaps.min.js')}}"></script>

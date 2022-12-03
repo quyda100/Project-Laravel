@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->integer("amount")->default(0);
             $table->float("total");
             $table->integer("status")->default(0);
+            $table->timestamp('order_time');
             $table->timestamps();
             $table->softDeletes();
 
