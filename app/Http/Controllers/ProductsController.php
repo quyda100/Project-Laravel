@@ -48,7 +48,7 @@ class ProductsController extends Controller
     public function sortDesc(){
         $sort= $_GET['sort'];
         $page = 0;
-        $productPrice;
+        //$productPrice;
         if($sort=='0'){
             $productPrice = DB::table('products')->skip(9*($page-1))->take(9)->orderBy('Price','desc')->get();
         }

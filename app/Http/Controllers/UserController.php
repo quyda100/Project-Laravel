@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+
 class UserController extends Controller
 {
     /**
@@ -19,25 +20,31 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $messges = [
-        'email.email' => 'Email phải là 1 địa chỉ hợp lệ',
-        'email.required' => 'Email không được bỏ trống',
-        'password.required' => 'Password không được bỏ trống' 
+            'email.email' => 'Email phải là 1 địa chỉ hợp lệ',
+            'email.required' => 'Email không được bỏ trống',
+            'password.required' => 'Password không được bỏ trống'
         ];
-       $request->validate([
+        $request->validate([
             'email' => 'required | email',
             'password' => 'required'
-       ],$messges);
+        ], $messges);
         $username = $request->email; // bien du lieu tu ajax
         $Account = DB::table('users')->where('Email', $username)->first();
         if (!empty($Account)) {
-             $password =Hash::check($request->password,$Account->Password);
-             if($password==1){
+            $password = Hash::check($request->password, $Account->Password);
+            if ($password == 1) {
                 session(['isLogin' => $Account->id]);
-                    if(session()->has('isLogin'))
-                        return 1;
-             };
+                if (session()->has('isLogin'))
+                    return 1;
+            };
         }
         return -1;
+    }
+
+    public function index()
+    {
+        $accounts = User::all();
+        return response()->json($accounts);
     }
     /**
      * Show the form for creating a new resource.
@@ -67,23 +74,25 @@ class UserController extends Controller
             'Address.required' => 'Address không được bỏ trống',
             'Phone.required' => 'Phone không được bỏ trống',
             'Phone.regex' => 'Phone không đúng định dạng',
-            ];
-            $request->validate([
-                'email' => 'required | email| unique:users',
-                'password' => 'required | between:6,20',
-                'FullName' => 'required',
-                'Address' => 'required',
-                'Phone' => 'required  | regex:/(0)([0-9]{9})/'
+        ];
+        $request->validate([
+            'email' => 'required | email| unique:users',
+            'password' => 'required | between:6,20',
+            'FullName' => 'required',
+            'Address' => 'required',
+            'Phone' => 'required  | regex:/(0)([0-9]{9})/'
 
-            ],$messges);
-            $request['password'] = bcrypt($request['password']);
-            $request->all();
-            $check = DB::table('users')->insert(['email' => $request->email,
-                                                 'password' => $request->password,
-                                                 'FullName' => $request->FullName,
-                                                'Address' => $request->Address,
-                                                'Phone' => $request->Phone]);
-            return $check;
+        ], $messges);
+        $request['password'] = bcrypt($request['password']);
+        $request->all();
+        $check = DB::table('users')->insert([
+            'email' => $request->email,
+            'password' => $request->password,
+            'FullName' => $request->FullName,
+            'Address' => $request->Address,
+            'Phone' => $request->Phone
+        ]);
+        return $check;
     }
 
     /**
@@ -128,6 +137,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        if(User::find($id)==null)
+        return true;
+        return false;
     }
 }

@@ -16,21 +16,18 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::resource('products', ProductsController::class);
-Route::resource('oders', ProductsController::class);
-Route::resource('categories', ProductsController::class);
-Route::resource('carts', ProductsController::class);
-Route::resource('oderdetails', ProductsController::class);
-Route::resource('users', ProductsController::class);
-Route::get('product',[ProductsController::class, 'getProducts']);
-Route::get('sort',[ProductsController::class, 'sortDesc']);
+Route::resource('orders', OrderController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('carts', CartsController::class);
+Route::resource('oderdetails', OrderdetailsController::class);
+Route::resource('users', UserController::class);
+Route::get('product', [ProductsController::class, 'getProducts']);
+Route::get('sort', [ProductsController::class, 'sortDesc']);
 Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
 
-Route::post('/registerApi',[UserController::class, 'store'])->name('registerApi');
-
-
-
+Route::post('/registerApi', [UserController::class, 'store'])->name('registerApi');
