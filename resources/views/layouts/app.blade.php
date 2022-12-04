@@ -2,6 +2,7 @@
 <html lang="zxx" class="no-js">
 
 <head>
+	<script src="{{asset('js/jquery-2.0.0.min.js')}}"></script>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
@@ -188,7 +189,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{asset('js/main.js')}}"></script>
 
 	<script src="{{asset('js/cute-alert.js')}}"></script>
-	<script src="{{asset('js/jquery-2.0.0.min.js')}}"></script>
+	
 	<script src="{{asset('js/jquery-sessition.js')}}"></script>
 	<script src="{{asset('js/accounts/logout.js')}}"></script>
 	@yield('script')

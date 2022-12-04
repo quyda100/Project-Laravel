@@ -81,6 +81,12 @@
 					</select>
 				</div>
 				<div class="sorting mr-auto">
+				
+					<input id="search"  type="text" placeholder="Search.." name="search">
+					<button id="btnSearch"class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+					
 				</div>
 				<div class="pagination">
 					{{-- <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a> --}}
@@ -90,6 +96,7 @@
 					<a class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
 					<a data-id="4">6</a> --}}
 					{{-- <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> --}}
+					
 				</div>
 			</div>
 			<!-- End Filter Bar -->
@@ -118,6 +125,7 @@
 		</div>
 	</div>
 </div>
+<script src="{{asset('js/products/search.js')}}"></script>
 @endsection
 @section('script')
 <script src="{{asset('js/products/productsCategory.js')}}"></script>

@@ -31,3 +31,5 @@ Route::get('sort', [ProductsController::class, 'sortDesc']);
 Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
 
 Route::post('/registerApi', [UserController::class, 'store'])->name('registerApi');
+
+Route::get('/search', [ProductsController::class, 'SearchProduct']);
