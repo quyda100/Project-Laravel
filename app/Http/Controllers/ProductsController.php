@@ -61,6 +61,12 @@ class ProductsController extends Controller
         return response()->json(['products' => $productPrice]);
     
    }
+
+   public function SearchProduct(){
+        $search = $_GET['searchSend'];
+        $result= DB::table('products')->where('Name','LIKE','%'.$search.'%')->get();
+        return $result;
+   }
     /**
      * Show the form for creating a new resource.
      *

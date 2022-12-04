@@ -22,9 +22,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function search()
     {
-        //
+        if ($request->search != '') {
+            $data = User::FullTextSearch('name', $request->search)->get();
+            foreach ($data as $key => $value) {
+                echo $value->name;
+                echo '<br>'; 
+            }
+        }
     }
 
     /**
