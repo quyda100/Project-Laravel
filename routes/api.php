@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartsController;
 use App\Http\Controllers\OptionsController;
 use App\Http\Controllers\ProductoptionsController;
 use Illuminate\Http\Request;
