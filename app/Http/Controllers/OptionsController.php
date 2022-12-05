@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class OptionsController extends Controller
      */
     public function index()
     {
-         $options = DB::table('options')->get();
-         return response()->json($options);
+         $options = DB::table('options')->where('group_id',2)->get(['id','option_name']);
+         $color = DB::table('options')->where('group_id',1)->get(['id','option_name']);
+         return response()->json(['size'=> $options,'color' => $color]);
     }
 
     /**

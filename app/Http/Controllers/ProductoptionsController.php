@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -13,8 +14,8 @@ class ProductoptionsController extends Controller
      */
     public function index()
     {
-         $produtoptions = DB::table('produtoptions')->get();
-         return response()->json($produtoptions);
+        $id = $_GET['id'];
+       
     }
 
     /**
@@ -46,6 +47,12 @@ class ProductoptionsController extends Controller
      */
     public function show($id)
     {
+        $produtoptions = DB::table('productoptions')
+        ->join('products','products.id','=','productoptions.product_id')
+        ->where('productoptions.options_id',$id)
+        ->select('products.*')
+        ->get();
+         return response()->json(['getSize'=>$produtoptions]);
     }
 
     /**
