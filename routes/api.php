@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\OptionsController;
+use App\Http\Controllers\ProductoptionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
@@ -26,6 +28,8 @@ Route::resource('categories', CategoryController::class);
 Route::resource('carts', CartsController::class);
 Route::resource('oderdetails', OrderdetailsController::class);
 Route::resource('users', UserController::class);
+Route::resource('options',OptionsController::class);
+Route::resource('productoptions',ProductoptionsController::class);
 Route::get('product', [ProductsController::class, 'getProducts']);
 Route::get('sort', [ProductsController::class, 'sortDesc']);
 Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
