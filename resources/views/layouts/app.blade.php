@@ -2,7 +2,7 @@
 <html lang="zxx" class="no-js">
 
 <head>
-	<script src="{{asset('js/jquery-2.0.0.min.js')}}"></script>
+	{{-- <script src="{{asset('js/jquery-2.0.0.min.js')}}"></script> --}}
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
@@ -43,7 +43,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="{{route('index')}}"><img src="img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="{{route('index')}}"><img src="{{asset('img/logo.png')}}" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -187,10 +187,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="{{asset('js/gmaps.min.js')}}"></script>
 	<script src="{{asset('js/main.js')}}"></script>
-
 	<script src="{{asset('js/cute-alert.js')}}"></script>
-	
 	<script src="{{asset('js/jquery-sessition.js')}}"></script>
+	<script src="{{asset('js/jquery-2.0.0.min.js')}}"></script>
 	<script src="{{asset('js/accounts/logout.js')}}"></script>
 	@yield('script')
 </body>

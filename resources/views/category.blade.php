@@ -125,8 +125,10 @@
 		</div>
 	</div>
 </div>
-<script src="{{asset('js/products/search.js')}}"></script>
+
 @endsection
 @section('script')
 <script src="{{asset('js/products/productsCategory.js')}}"></script>
+<script src="{{asset('js/products/search.js')}}"></script>
+<script src="{{asset('js/carts/createCarts.js')}}"></script>
 @endsection

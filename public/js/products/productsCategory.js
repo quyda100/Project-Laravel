@@ -47,7 +47,7 @@ $(document).ready(function () {
                                     +'</div>'
                                     +'<div class="prd-bottom">'
 
-									+'<a href="" class="social-info">'
+									+'<a class="social-info addCart" data-idproduct="'+products.id+'">'
 									+	'<span class="ti-bag"></span>'
 									+	'<p class="hover-text">add to bag</p>'
 									+'</a>'
@@ -159,7 +159,7 @@ $(document).ready(function () {
                                 +'</div>'
                                 +'<div class="prd-bottom">'
 
-                                +'<a href="" class="social-info">'
+                                +'<a class="social-info addCart" data-idproduct="'+products.id+'">'
                                 +	'<span class="ti-bag"></span>'
                                 +	'<p class="hover-text">add to bag</p>'
                                 +'</a>'

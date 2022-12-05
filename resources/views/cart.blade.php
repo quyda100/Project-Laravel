@@ -7,8 +7,8 @@
                 <div class="col-first">
                     <h1>Shopping Cart</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Cart</a>
+                        <a href="{{route('index')}}">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="{{route('user.cart')}}">Cart</a>
                     </nav>
                 </div>
             </div>
@@ -16,7 +16,7 @@
     </section>
     <!-- End Banner Area -->
 @endsection
-<!--================Cart Area =================-->
+{{-- <!--================Cart Area =================-->
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
@@ -204,7 +204,7 @@
         </div>
     </div>
 </section>
-<!--================End Cart Area =================-->
+<!--================End Cart Area =================--> --}}
 @section('content')
     <!--================Cart Area =================-->
     <section class="cart_area">
@@ -220,8 +220,8 @@
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="getCarts">
+                            {{-- <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
@@ -304,7 +304,7 @@
                                 <td>
                                     <h5>$720.00</h5>
                                 </td>
-                            </tr>
+                            </tr>--}}
                             <tr class="bottom_button">
                                 <td>
                                     <a class="gray_btn" href="#">Update Cart</a>
@@ -383,7 +383,7 @@
                                 </td>
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="#">Continue Shopping</a>
+                                        <a class="gray_btn" href="{{route('category')}}">Continue Shopping</a>
                                         <a class="primary-btn" href="#">Proceed to checkout</a>
                                     </div>
                                 </td>
@@ -395,4 +395,7 @@
         </div>
     </section>
     <!--================End Cart Area =================-->
+@endsection
+@section('script')
+    <script src="{{asset('js/carts/carts.js')}}"></script>
 @endsection
