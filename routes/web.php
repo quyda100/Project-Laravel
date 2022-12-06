@@ -81,6 +81,18 @@ Route::middleware([])->prefix('dashboard')->name("dashboard.")->group(function (
             return view('dashboard.account.create');
         });
     });
+    // Gọi Route của product về view index
+    Route::name('product.')->prefix('product')->group(function () {
+        Route::get('/', function () {
+            return view('dashboard.product.index');
+        })->name('index');
+        Route::get('create', function () {
+            return view('dashboard.product.create');
+        })->name('create');
+        Route::get('edit', function () {
+            return view('dashboard.product.edit');
+        });
+    });
 });
 
 

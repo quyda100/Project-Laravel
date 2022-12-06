@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
@@ -67,6 +68,11 @@ class ProductsController extends Controller
         $result= DB::table('products')->where('Name','LIKE','%'.$search.'%')->get();
         return $result;
    }
+   public function product()
+   {
+    $products = DB::table('products')->join('categories','products.category_id','=','categories.id')->orderBy('SKU','asc')->get();
+    return response()->json($products);
+   }
     /**
      * Show the form for creating a new resource.
      *
@@ -85,7 +91,33 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messges = [
+            'id.required' => 'Id không được bỏ trống',
+            'id.unique' => 'Id của bạn đã tồn tại',
+            'name.required' => 'Name không được để trống ',
+            'price.required' => 'Price không được bỏ trống',
+            'stock.required' => 'Stock không được bỏ trống',
+            'description.required' => 'Description không được bỏ trống'
+        ];
+        $request->validate([
+            'id'=>'required | unique:products',
+            'name' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'description' => 'required'
+
+        ], $messges);
+        $request->all();
+        $check = DB::table('products')->insert([
+            'SKU' => $request->id,
+            'Name' => $request->name,
+            'description' => $request->description,
+            'Stock' => $request->stock,
+            'Price' => $request->price,
+            'category_id' => $request->category,
+            // 'ProductImage' => $request->ProductImage
+        ]);
+        return $check;
     }
 
     /**
@@ -134,6 +166,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        product::find($id)->delete();
+        if(product::find($id)==null)
+        return true;
+        return false;
     }
 }
