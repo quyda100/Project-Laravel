@@ -166,9 +166,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        product::find($id)->delete();
-        if(product::find($id)==null)
+        DB::delete('delete users where id = ?', [$id]);
         return true;
-        return false;
     }
 }
