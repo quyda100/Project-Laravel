@@ -147,4 +147,31 @@ class CartsController extends Controller
         }
         return -1;
     }
+    public function plush($id){
+        $cart = DB::table('carts')->where('id',$id)->first();
+       
+        $product = DB::table('products')->where('id',$cart->product_id)->first(['Price','Stock']);
+        if($cart->quantity >= $product->Stock) return -1;
+        else{
+            $check = DB::table('carts')->where('id',$id)->update([
+                'quantity' => $cart->quantity + 1,
+                'total' => ($cart->quantity + 1)* $product->Price
+            ]);
+            return $check;
+        }
+        return -2;
+    }
+    public function minus($id){
+        $cart = DB::table('carts')->where('id',$id)->first();
+        $product = DB::table('products')->where('id',$cart->product_id)->first(['Price','Stock']);
+        if($cart->quantity <= 1) return -1;
+        else{
+            $check = DB::table('carts')->where('id',$id)->update([
+                'quantity' => $cart->quantity-1,
+                'total' => ($cart->quantity-1)* $product->Price
+            ]);
+            return $check;
+        }
+        return -2;
+    }
 }
