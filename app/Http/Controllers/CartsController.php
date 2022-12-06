@@ -17,7 +17,7 @@ class CartsController extends Controller
         $userId = session()->get('isLogin');
         $carts = DB::table('carts')
         ->join('products','products.id','=','carts.product_id')
-        ->select(['products.*','carts.quantity'])
+        ->select(['products.*','carts.quantity','carts.total','carts.id as cartId'])
         ->where('user_id',$userId)->get();
         $total = $carts->sum('total');
         return response()->json(['carts'=>$carts,'total' => $total]);
@@ -61,10 +61,11 @@ class CartsController extends Controller
        }
        else{
         if($cartExists->quantity >= $productPrice->Stock) return -3;
+        $quantity = $request->quantity + $cartExists->quantity;
         $check = DB::table('carts')->where('id',$cartExists->id)->update(
             [
-                'quantity'=> $request->quantity + $cartExists->quantity,
-                'total' => ($request->quantity * $productPrice->Price)
+                'quantity'=> $quantity,
+                'total' => $quantity * $productPrice->Price
             ]
         );
             return $check;
@@ -103,7 +104,28 @@ class CartsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->all();
+        if(!is_numeric($request->quantity)) return -4;
+        $cart =  DB::table('carts')->where('id',$id)->first();
+        $product = DB::table('products')->where('id',$cart->product_id)->first(['id','Price','Stock']);
+        if($product->Stock==0) 
+            return -1;
+        else if($request->quantity<0){
+            return -2;
+        }
+        else if($request->quantity > $product->Stock){
+            return -3;
+        }
+        else{
+            $check = DB::table('carts')->where('id',$id)->update(
+                [
+                    'quantity'=> $request->quantity,
+                    'total' => $request->quantity * $product->Price
+                ]
+            );
+            return $check;
+        }
+        return -4;
     }
 
     /**
@@ -114,6 +136,15 @@ class CartsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $check = DB::table('carts')->delete($id);
+        return $check;
+    }
+    public function deleteAll(){
+        $userId = session()->get('isLogin');
+        if(!empty($userId)){
+            $check = DB::table('carts')->where('user_id',[$userId])->delete();
+            return $check;
+        }
+        return -1;
     }
 }
