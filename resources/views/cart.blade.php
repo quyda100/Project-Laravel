@@ -218,7 +218,7 @@
                                 <th scope="col">Giá</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Tổng tiền</th>
-                                <th scope="col">Chỉnh sửa</th>
+                                <th scope="col" style="width: 15%">Chỉnh sửa</th>
                             </tr>
                         </thead>
                         <tbody id="getCarts">

@@ -36,7 +36,8 @@ Route::get('productIndex',[ProductsController::class,'productIndex']);
 Route::get('sort', [ProductsController::class, 'sortDesc']);
 Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
 Route::post('deleteAll',[CartsController::class,'deleteAll'])->name('deleteAll');
-
+Route::post('plush/{id}',[CartsController::class,'plush'])->name('plush');
+Route::post('minus/{id}',[CartsController::class,'minus'])->name('minus');
 Route::post('/registerApi', [UserController::class, 'store'])->name('registerApi');
 
 Route::get('/search', [ProductsController::class, 'SearchProduct']);
