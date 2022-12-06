@@ -20,6 +20,10 @@ class ProductsController extends Controller
          $categories = DB::table('categories')->get();
          return response()->json(['products' =>$products,'categories' => $categories]);
     }
+    public function productIndex(){
+        $products = DB::table('products')->take(8)->get();
+        return response()->json(['products' =>$products]);
+    }
     public function getProducts(){
         $id = $_GET['id'];
         $page = $_GET['page'];
