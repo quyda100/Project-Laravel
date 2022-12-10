@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\OptionsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductoptionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,16 +25,17 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::resource('products', ProductsController::class);
-//Route::resource('orders', OrderController::class);
-//Route::resource('categories', CategoryController::class);
+Route::resource('orders', OrderController::class);
+Route::resource('categories', CategoryController::class);
 Route::resource('carts', CartsController::class);
-//Route::resource('oderdetails', OrderdetailsController::class);
+Route::resource('oderdetails', OrderdetailsController::class);
 Route::resource('users', UserController::class);
 Route::resource('options',OptionsController::class);
 Route::resource('productoptions',ProductoptionsController::class);
 Route::get('product', [ProductsController::class, 'getProducts']);
 Route::get('productIndex',[ProductsController::class,'productIndex']);
 Route::get('sort', [ProductsController::class, 'sortDesc']);
+Route::get('getInFo',[OrderController::class,'getInfo']);
 Route::post('/loginApi', [UserController::class, 'login'])->name('loginApi');
 Route::post('deleteAll',[CartsController::class,'deleteAll'])->name('deleteAll');
 Route::post('plush/{id}',[CartsController::class,'plush'])->name('plush');
