@@ -57,7 +57,10 @@ class OrderController extends Controller
         ], $messges);
         $id = session()->get('isLogin');
         $cart = DB::table('carts')->where('user_id',$id)->get();
-        $total = $cart->sum('total');
+        $total = $cart->sum('total') + 50000;
+        $checkProduct = DB::table('carts')->join('products','products.id','=','carts.product_id')
+        ->whereColumn('quantity','>','Stock')->exists();
+        if($checkProduct) return -3;
         $request->all();
         $code = Carbon::now()->toDateTimeString();
         $chek = DB::table('orders')->insert([
@@ -72,7 +75,6 @@ class OrderController extends Controller
             $orderId = DB::table('orders')->where('code',$code)->first();
             foreach($cart as $item){
                 $product = DB::table('products')->where('id',$item->product_id)->first();
-                if($item->quantity > $product->Stock) return -3;
                 DB::table('orderdetails')->insert([
                     'order_id' => $orderId->id,
                     'product_id' => $item->product_id,
