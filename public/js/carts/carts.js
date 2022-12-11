@@ -41,8 +41,11 @@ $(document).ready(function () {
                                 '<button data-id="'+items.cartId+'" class= "btn btn-danger delete">Xóa</button>'+
                                 '</td>'+
                             '</tr>'
-                            //'<p>Sản phẩm này của bạn đã hết hàng vui lòng xóa sản phẩm để tiếp tục thanh toán</p>'
+                            //'<p></p>'
                          );
+                         if(items.quantity > items.Stock)
+                         $('#getCarts').prepend('<td style="color:red">Sản phẩm không đủ số lượng vui lòng kiểm tra để tiếp tục thanh toán</td>')
+                            
                     });
                 }
                 $('#getCarts').append(

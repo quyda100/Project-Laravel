@@ -39,7 +39,7 @@ $(document).ready(function () {
             data: form,
             dataType: "JSON",
             success: function (response) {
-                console.log(response);
+                $('.error-msg').html('');
                 if(response==-2){
                     window.setTimeout(function () {
                         window.location.href="../user/cart";
@@ -49,10 +49,23 @@ $(document).ready(function () {
                         type: "error",
                         message: "Bạn chưa có sản phẩm trong giỏ hàng",
                         timer: 3000,
-                    })
-                }else{
+                    });
+                }else if(response==-3){
+                    window.setTimeout(function () {
+                        window.location.href="../user/cart";
+                    }, 2000);
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "error",
+                        message: "Một sản phẩm nào đó của bạn không đủ số lượng vui lòng xem lại",
+                        timer: 3000,
+                    });
+                }
+                else if(response==1){
                 $('.error-msg').html('');
-                if(response==1){
+                window.setTimeout(function () {
+                    window.location.href="../";
+                }, 2000);
                     cuteToast({
                         title: "Thông báo",
                         type: "success",
@@ -60,7 +73,6 @@ $(document).ready(function () {
                         timer: 3000,
                     })
                 }
-            }
             },
             error: function(e){
                 $('.error-msg').html('');
