@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer("user_id")->unsigned();
             $table->string("oder_address");
             $table->string("oder_phone");
-            $table->integer("amount")->default(0);
+            $table->string('code')->unique();
             $table->float("total");
             $table->integer("status")->default(0);
             $table->timestamp('order_time');
