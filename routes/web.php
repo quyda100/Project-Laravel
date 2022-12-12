@@ -62,25 +62,6 @@ Route::middleware(['checkLogin'])->prefix("user")->name("user.")->group(function
     })->name('logout');
 });
 
-Route::middleware([])->prefix('dashboard')->name("dashboard.")->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('index');
-    Route::get('products', function () {
-        return view('product');
-    })->name('product');
 
-    Route::name('account.')->prefix('account')->group(function () {
-        Route::get('/', function () {
-            return view('dashboard.tables');
-        })->name('index');
-        Route::get('create', function () {
-            return view('dashboard.account.create');
-        })->name('create');
-        Route::get('edit', function () {
-            return view('dashboard.account.create');
-        });
-    });
-});
 
 
