@@ -13,9 +13,7 @@ Route::middleware(['checkLogin'])->name("dashboard.")->group(function () {
         return view('product');
     })->name('product');
 
-<<<<<<< HEAD
 Route::middleware([])->prefix("api")->group(function () {
-=======
     Route::name('account.')->prefix('account')->group(function () {
         Route::get('/', function () {
             return view('dashboard.tables');
@@ -30,7 +28,6 @@ Route::middleware([])->prefix("api")->group(function () {
 });
 
 Route::prefix("api")->group(function () {
->>>>>>> 63e7ca1f81320d61e2f2fb95d8273c611e4650c0
     Route::get('users', [UserController::class, 'index']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
     Route::post('users', [UserController::class, 'store']);
@@ -41,4 +38,5 @@ Route::middleware([])->prefix("api")->group(function () {
     Route::get('products', [ProductsController::class, 'product']);
     Route::delete('products/{id}', [ProductsController::class, 'destroy']);
     Route::post('products', [ProductsController::class, 'store']);
+});
 });
