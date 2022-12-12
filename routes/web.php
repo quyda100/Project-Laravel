@@ -62,6 +62,7 @@ Route::middleware(['checkLogin'])->prefix("user")->name("user.")->group(function
     })->name('logout');
 });
 
+<<<<<<< HEAD
 Route::middleware([])->prefix('dashboard')->name("dashboard.")->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
@@ -94,5 +95,8 @@ Route::middleware([])->prefix('dashboard')->name("dashboard.")->group(function (
         });
     });
 });
+=======
+
+>>>>>>> 63e7ca1f81320d61e2f2fb95d8273c611e4650c0
 
 
