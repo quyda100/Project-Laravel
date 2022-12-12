@@ -41,8 +41,11 @@ $(document).ready(function () {
                                 '<button data-id="'+items.cartId+'" class= "btn btn-danger delete">Xóa</button>'+
                                 '</td>'+
                             '</tr>'
-                            //'<p>Sản phẩm này của bạn đã hết hàng vui lòng xóa sản phẩm để tiếp tục thanh toán</p>'
+                            //'<p></p>'
                          );
+                         if(items.quantity > items.Stock)
+                         $('#getCarts').prepend('<td style="color:red">Sản phẩm không đủ số lượng vui lòng kiểm tra để tiếp tục thanh toán</td>')
+                            
                     });
                 }
                 $('#getCarts').append(
@@ -63,7 +66,7 @@ $(document).ready(function () {
                                 '<td></td>'+
                                 '<td></td>'+
                                 '<td>'+
-                                    '<h5>Subtotal</h5>'+
+                                    '<h5>Tổng tiền</h5>'+
                                 '</td>'+
                                 '<td id="total">'+
                                 '</td>'+
@@ -92,20 +95,71 @@ $(document).ready(function () {
     getCart();
     $(document).on('click','.plush',function() { 
         var id = $(this).data('id');
-        var result = $('#sst'+ id).val();
-        result++;
-        $('#sst' + id).attr('value',result);
-        return false;
+        $.ajax({
+            type: "POST",
+            url: "../api/plush/" + id,
+            data: {id:id},
+            dataType: "JSON",
+            success: function (response) {
+                if(response==1){
+                    getCart();
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "success",
+                        message: "Cập nhật giỏ hàng thành công",
+                        timer: 3000,
+                    })
+                }else if(response==-1){
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "error",
+                        message: "Số lượng tồn kho không đủ",
+                        timer: 3000,
+                    })
+                }else{
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "error",
+                        message: "Lỗi không xác định",
+                        timer: 3000,
+                    })
+                }
+            }
+        });
     });
     $(document).on('click','.minus',function() { 
         var id = $(this).data('id');
-        var result = $('#sst'+id).val(); 
-        if(result <= 1 ) 
-            return false;
-        else{    
-            result--;
-            $('#sst'+id).attr('value',result);
-        }
+        $.ajax({
+            type: "POST",
+            url: "../api/minus/" + id,
+            data: {id:id},
+            dataType: "JSON",
+            success: function (response) {
+                if(response==1){
+                    getCart();
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "success",
+                        message: "Cập nhật giỏ hàng thành công",
+                        timer: 3000,
+                    })
+                }else if(response==-1){
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "error",
+                        message: "Không thể thực hiện",
+                        timer: 3000,
+                    })
+                }else{
+                    cuteToast({
+                        title: "Thông báo",
+                        type: "error",
+                        message: "Lỗi không xác định",
+                        timer: 3000,
+                    })
+                }
+            }
+        });
         
     });
     $(document).on('change','.edit',function(){
