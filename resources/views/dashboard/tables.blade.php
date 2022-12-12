@@ -61,13 +61,17 @@
                                 '<td>'+value.Email+'</td>'+
                                 '<td>'+value.Address+'</td>'+
                                 '<td>'+value.Phone+'</td>'+
-                                '<td><button class="btn btn-primary btn-edit" value="'+value.id+'">Sửa </button>'+
+                                '<td><a href="./account/edit/'+value.id+'"class="btn btn-primary btn-edit">Sửa </a>'+
                                 '<button class="btn btn-danger btn-delete" value="'+value.id+'">Xóa </button> </td>'+
                             '</tr>'
                          );
                     });
                 }
             }
+        });
+        $(".btn-edit").click(function (e) { 
+            var val = $(this).val();
+            window.location.href = "./edit/"+val;
         });
         $(document).on('click','.btn-delete',function(){
             var val = $(this).val();

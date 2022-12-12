@@ -105,7 +105,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response()->json($user);
     }
 
     /**
@@ -116,7 +117,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return response()->json($user);
     }
 
     /**
@@ -128,7 +130,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $messges = [
+            'email.required' => 'Email không được bỏ trống',
+            'email.email' => 'Email phải là 1 địa chỉ hợp lệ',
+            'email.unique' => 'Email của bạn đã tồn tại',
+            'FullName.required' => 'FullName không được bỏ trống',
+            'Address.required' => 'Address không được bỏ trống',
+            'Phone.required' => 'Phone không được bỏ trống',
+            'Phone.regex' => 'Phone không đúng định dạng',
+        ];
+        $request->validate([
+            'email' => 'required | email| unique:users',
+            'FullName' => 'required',
+            'Address' => 'required',
+            'Phone' => 'required  | regex:/(0)([0-9]{9})/'
+
+        ], $messges);
+        $request['password'] = bcrypt($request['password']);
+        $request->all();
+        $check = DB::table('users')->where('id',$id)->update([
+            'email' => $request->email,
+            'FullName' => $request->FullName,
+            'Address' => $request->Address,
+            'Phone' => $request->Phone
+        ]);
+        return $check;
     }
 
     /**
