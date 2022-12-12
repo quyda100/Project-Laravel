@@ -17,6 +17,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Mã Sản Phẩm</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Giá tiền</th>
@@ -30,6 +31,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>ID</th>
                                 <th>Mã Sản Phẩm</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Giá tiền</th>
@@ -60,18 +62,20 @@
             url: "api/products",
             dataType: "json",
             success: function (response) {
+                console.log(response);
                 if(response.length > 0){
                     $.each(response, function (indexInArray, value) { 
                          $('#table-data').append(
                             '<tr>'+
+                                '<td>'+value.id+'</td>'+
                                 '<td>'+value.SKU+'</td>'+
                                 '<td>'+value.Name+'</td>'+
                                 '<td>'+value.Price+'</td>'+
                                 '<td>'+value.Stock+'</td>'+
                                 '<td>'+value.ProductImage+'</td>'+
                                 '<td>'+value.description+'</td>'+
-                                '<td>'+value.name+'</td>'+
-                                '<td><button class="btn btn-primary btn-edit" value="'+value.id+'">Sửa </button>'+
+                                '<td>'+value.Category+'</td>'+
+                                '<td><a href="./product/edit/'+value.id+'" class="btn btn-primary btn-edit" >Sửa </a>'+
                                 '<button class="btn btn-danger btn-delete" value="'+value.id+'">Xóa </button> </td>'+
                             '</tr>'
                          );

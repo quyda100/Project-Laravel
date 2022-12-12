@@ -89,10 +89,26 @@ Route::middleware([])->prefix('dashboard')->name("dashboard.")->group(function (
         Route::get('create', function () {
             return view('dashboard.product.create');
         })->name('create');
-        Route::get('edit', function () {
-            return view('dashboard.product.edit');
+        Route::get('edit/{id}', function ($id) {
+            return view('dashboard.product.edit',['id'=>$id]);
         });
     });
+    Route::name('order.')->prefix('order')->group(function(){
+        Route::get('/',function(){
+            return view('dashboard.order.index');
+        })->name('index');  
+        Route::get('orders', function () {
+            return view('dashboard.order.orders');
+        })->name('orders');
+    });
+
+    Route::name('orderdetail.')->prefix('orderdetail')->group(function(){
+        Route::get('/{id}',function($id){
+            return view('dashboard.order.detail',['id'=>$id]);  
+        })->name('index');
+    });
+        
+    
 });
 
 

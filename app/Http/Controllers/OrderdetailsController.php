@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class OrderdetailsController extends Controller
@@ -11,9 +11,9 @@ class OrderdetailsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-         $orderdetail = DB::table('orderdetails')->get();
+         $orderdetail = DB::table('orderdetails')->where('order_id',$id)->join('products','orderdetails.product_id','=','products.id')->select(['orderdetails.id','order_id','products.Name','orderdetails.SKU','orderdetails.quantity','products.Price'])->get();
          return response()->json($orderdetail);
     }
 
@@ -57,7 +57,6 @@ class OrderdetailsController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**

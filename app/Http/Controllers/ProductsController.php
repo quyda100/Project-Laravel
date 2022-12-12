@@ -74,7 +74,7 @@ class ProductsController extends Controller
    }
    public function product()
    {
-    $products = DB::table('products')->join('categories','products.category_id','=','categories.id')->orderBy('SKU','asc')->get();
+    $products = DB::table('products')->join('categories','products.category_id','=','categories.id')->select(['products.id','SKU','products.Name','products.description','Price','Stock','ProductImage','categories.Name as Category'])->orderBy('SKU','asc')->get();
     return response()->json($products);
    }
     /**
@@ -132,7 +132,7 @@ class ProductsController extends Controller
      */
     public function show($SKU)
     {
-         $Product = DB::table('products')->where('SKU','=',$SKU)->get();
+        $Product = DB::table('products')->where('SKU','=',$SKU)->get();
         if (!empty($Product)) {
             return response()->json($Product);
         }
@@ -147,7 +147,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Product = DB::table('products')->where('id',$id)->first();
+        return response()->json($Product);
     }
 
     /**
@@ -159,7 +160,31 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messges = [
+            'SKU.required' => 'SKU không được bỏ trống',
+            'name.required' => 'Name không được để trống ',
+            'price.required' => 'Price không được bỏ trống',
+            'stock.required' => 'Stock không được bỏ trống',
+            'description.required' => 'Description không được bỏ trống'
+        ];
+        $request->validate([
+            'SKU'=>'required',
+            'name' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'description' => 'required'
+
+        ], $messges);
+        $request->all();
+        $check = DB::table('products')->where('id',$id)->update([
+            'Name' => $request->name,
+            'description' => $request->description,
+            'Stock' => $request->stock,
+            'Price' => $request->price,
+            'category_id' => $request->category,
+            // 'ProductImage' => $request->ProductImage
+        ]);
+        return $check;
     }
 
     /**
@@ -170,7 +195,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        DB::delete('delete users where id = ?', [$id]);
+        DB::table('products')->where('id',$id)->delete();
         return true;
     }
 }

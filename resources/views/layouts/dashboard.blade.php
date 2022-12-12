@@ -67,7 +67,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản Lý:</h6>
                         <a class="collapse-item" href={{route('dashboard.account.index')}}>Tài Khoản</a>
-                        <a class="collapse-item" href={{route('dashboard.product.index')}}>Sản phẩm</a>
+                        <a class="collapse-item" href={{route('dashboard.product.index')}}>Sản Phẩm</a>
+                        <a class="collapse-item" href={{route('dashboard.order.index')}}>Hóa Đơn</a>
                     </div>
                 </div>
             </li>
