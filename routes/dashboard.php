@@ -8,21 +8,28 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderdetailsController;
 
 Route::middleware([])->prefix("api")->group(function () {
+    Route::name('account.')->prefix('account')->group(function () {
+        Route::get('/', function () {
+            return view('dashboard.tables');
+        })->name('index');
+        Route::get('create', function () {
+            return view('dashboard.account.create');
+        })->name('create');
+        Route::get('edit/{id}', function ($id) {
+            return view('dashboard.account.edit',['id'=>$id]);
+        });
+    });
+});
+
+Route::prefix("api")->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
     Route::post('users', [UserController::class, 'store']);
+    Route::get('users/{id}', [UserController::class, 'edit']);
+    Route::put('users/{id}', [UserController::class, 'update']);
 });
 Route::middleware([])->prefix("api")->group(function () {
     Route::get('products', [ProductsController::class, 'product']);
     Route::delete('products/{id}', [ProductsController::class, 'destroy']);
     Route::post('products', [ProductsController::class, 'store']);
-    Route::get('products/{id}',[ProductsController::class, 'edit']);
-    Route::put('products/{id}',[ProductsController::class, 'edit']);
-});
-Route::middleware([])->prefix("api")->group(function () {
-    Route::get('orders', [OrderController::class, 'index']);
-    Route::get('orders/{id}',[OrderController::class, 'edit']);
-});
-Route::middleware([])->prefix("api")->group(function () {
-    Route::get('orderdetails/{id}', [OrderdetailsController::class, 'index']);
 });
