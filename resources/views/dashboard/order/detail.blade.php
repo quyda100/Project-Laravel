@@ -20,7 +20,6 @@
                             <tr>
                                 <th>Mã Hóa Đơn</th>
                                 <th>Tên Sản Phẩm</th>
-                                <th>Số Lượng </th>
                                 <th>Giá Tiền</th>
                             </tr>
                         </thead>
@@ -28,7 +27,6 @@
                             <tr>
                                 <th>Mã Hóa Đơn</th>
                                 <th>Tên Sản Phẩm</th>
-                                <th>Số lượng</th>
                                 <th>Giá Tiền</th>
                             </tr>
                         </tfoot>
@@ -57,7 +55,6 @@
                             '<tr>'+
                                 '<td>'+value.SKU+'</td>'+
                                 '<td>'+value.Name+'</td>'+
-                                '<td>'+value.quantity+'</td>'+
                                 '<td>'+value.Price+'</td>'+
                                 // '<td>  <a href ="./orders/edit '+value.id+'" class="btn btn-info btn-detail">Chi Tiết </a></td>'+
                             '</tr>'

@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-=======
 use Carbon\Carbon;
->>>>>>> master
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -18,11 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-         $order = DB::table('orders')->join('users','orders.user_id','=','users.id')->select(['orders.id','users.FullName','oder_address','oder_phone','amount','total','status'])->get();
+         $order = DB::table('orders')->join('users','orders.user_id','=','users.id')->select(['orders.id','users.FullName','oder_address','oder_phone','total','status'])->get();
          return response()->json($order);
     }
-<<<<<<< HEAD
-=======
     public function getInfo(){
         $id = session()->get('isLogin');
         $user = DB::table('users')->where('id',$id)->first(['FullName','Phone','Email','Address']);
@@ -31,7 +26,6 @@ class OrderController extends Controller
         $total = $cart->sum('total');
         return response()->json(['user' => $user,'total' => $total]);
     }
->>>>>>> master
     /**
      * Show the form for creating a new resource.
      *
@@ -122,7 +116,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $Order =DB::table('orderdetails')->join('product','product.Name','=','product_id')->select(['product.Name','orderdetails.quantity','product.Price'])->get();
+        $Order =DB::table('orderdetails')->join('products','products.id','=','product_id')->select(['products.Name','orderdetails.quantity','products.Price'])->get();
         return response()->json($Order);
     }
     
